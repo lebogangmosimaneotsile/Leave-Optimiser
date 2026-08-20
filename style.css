@@ -1,0 +1,599 @@
+/* ============================================
+   DESIGN TOKENS
+   ============================================ */
+:root {
+  --color-primary: #6B2B06;
+  --color-accent: #B38A58;
+  --color-surface: #EBD2BE;
+  --color-background: #FFE8D4;
+  --color-border: #D9B896;
+  --color-text-on-light: #6B2B06;
+  --color-text-on-dark: #FFE8D4;
+  --color-error: #C0392B;
+
+  --font-display: 'DM Serif Display', serif;
+  --font-body: 'DM Sans', sans-serif;
+
+  --size-xs: 4px;
+  --size-sm: 8px;
+  --size-md: 16px;
+  --size-lg: 24px;
+  --size-xl: 32px;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-full: 999px;
+}
+
+/* ============================================
+   RESET & BASE
+   ============================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-background);
+  color: var(--color-text-on-light);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+header {
+  background-color: var(--color-primary);
+  padding: var(--size-lg) var(--size-xl);
+  text-align: center;
+}
+
+header h1 {
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 400;
+  color: var(--color-text-on-dark);
+  margin-bottom: var(--size-xs);
+}
+
+header p {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--color-text-on-dark);
+  opacity: 0.75;
+}
+
+/* ============================================
+   MAIN LAYOUT — TWO COLUMNS
+   ============================================ */
+main {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: var(--size-xl);
+  padding: var(--size-xl);
+  min-height: calc(100vh - 90px);
+  align-items: start;
+}
+
+/* ============================================
+   LEFT COLUMN
+   ============================================ */
+.left-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-lg);
+}
+
+/* ============================================
+   FIELDS & INPUTS
+   ============================================ */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-sm);
+}
+
+.field label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-on-light);
+  opacity: 0.85;
+}
+
+.field input,
+.field select {
+  font-family: var(--font-body);
+  font-size: 13px;
+  padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.55);
+  color: var(--color-text-on-light);
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.field input:focus,
+.field select:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  border-width: 2px;
+  box-shadow: 0 0 0 3px rgba(179, 138, 88, 0.15);
+}
+
+.field input::placeholder {
+  color: var(--color-text-on-light);
+  opacity: 0.4;
+}
+
+.select-wrap {
+  position: relative;
+}
+
+.select-wrap::after {
+  content: '';
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid var(--color-text-on-light);
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.input-row {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: var(--size-md);
+  align-items: end;
+}
+
+/* ============================================
+   BUTTON
+   ============================================ */
+.btn-primary {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 12px var(--size-md);
+  background-color: var(--color-primary);
+  color: var(--color-text-on-dark);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.15s, transform 0.1s;
+  letter-spacing: 0.02em;
+}
+
+.btn-primary:hover {
+  background-color: #8A3A0C;
+}
+
+.btn-primary:active {
+  transform: scale(0.99);
+}
+
+.btn-primary:disabled {
+  background-color: var(--color-border);
+  color: rgba(107, 43, 6, 0.5);
+  cursor: not-allowed;
+}
+
+/* ============================================
+   SUMMARY BOX
+   ============================================ */
+.summary-box {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: var(--size-md);
+}
+
+.summary-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-on-light);
+  opacity: 0.7;
+  margin-bottom: var(--size-sm);
+}
+
+.summary-content p,
+.summary-content div {
+  font-size: 13px;
+  color: var(--color-text-on-light);
+  line-height: 1.8;
+}
+
+/* ============================================
+   CALENDAR KEY
+   ============================================ */
+.calendar-key {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: var(--size-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-sm);
+}
+
+.key-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-on-light);
+  opacity: 0.7;
+  margin-bottom: var(--size-xs);
+}
+
+.key-item {
+  display: flex;
+  align-items: center;
+  gap: var(--size-sm);
+  font-size: 12px;
+  color: var(--color-text-on-light);
+}
+
+.key-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.key-holiday { background-color: var(--color-primary); }
+.key-bridge { background-color: var(--color-accent); }
+.key-weekday { background-color: rgba(255,255,255,0.5); border: 1px solid var(--color-border); }
+.key-weekend { background-color: rgba(255,255,255,0.5); border: 1px solid var(--color-border); opacity: 0.45; }
+
+/* ============================================
+   RIGHT COLUMN
+   ============================================ */
+.right-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-lg);
+}
+
+.results-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-sm);
+}
+
+.section-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-on-light);
+  opacity: 0.65;
+}
+
+/* ============================================
+   SUGGESTIONS — PILLS
+   ============================================ */
+#suggestions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-sm);
+}
+
+#suggestions ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-sm);
+}
+
+#suggestions li {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--size-sm) var(--size-md);
+  background-color: var(--color-accent);
+  color: var(--color-text-on-dark);
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 500;
+  width: fit-content;
+}
+
+/* ============================================
+   PUBLIC HOLIDAYS LIST
+   ============================================ */
+#holidays-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-sm);
+}
+
+.holiday-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--size-sm) var(--size-md);
+  background-color: var(--color-surface);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  color: var(--color-text-on-light);
+}
+
+.holiday-date {
+  font-weight: 500;
+}
+
+/* ============================================
+   CALENDAR CARD
+   ============================================ */
+.calendar-card {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: var(--size-lg);
+  overflow: hidden;
+}
+
+/* FullCalendar overrides */
+.fc {
+  font-family: var(--font-body) !important;
+  font-size: 12px;
+}
+
+.fc-toolbar-title {
+  font-family: var(--font-display) !important;
+  font-size: 20px !important;
+  font-weight: 400 !important;
+  color: var(--color-text-on-light) !important;
+}
+
+.fc-button-primary {
+  background-color: var(--color-primary) !important;
+  border-color: var(--color-primary) !important;
+  font-family: var(--font-body) !important;
+  font-size: 11px !important;
+  border-radius: var(--radius-sm) !important;
+}
+
+.fc-button-primary:hover {
+  background-color: #8A3A0C !important;
+  border-color: #8A3A0C !important;
+}
+
+.fc-daygrid-day {
+  background: transparent !important;
+}
+
+.fc-col-header-cell {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+  color: var(--color-text-on-light) !important;
+  opacity: 0.65;
+  border: none !important;
+  background: transparent !important;
+}
+
+.fc-daygrid-day-number {
+  color: var(--color-text-on-light) !important;
+  font-size: 12px !important;
+}
+
+.fc-day-sat .fc-daygrid-day-number,
+.fc-day-sun .fc-daygrid-day-number {
+  opacity: 0.4;
+}
+
+.fc-event {
+  border-radius: var(--radius-sm) !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  border: none !important;
+  padding: 2px 6px !important;
+}
+
+/* Holiday events */
+.fc-event.holiday-event {
+  background-color: var(--color-primary) !important;
+  color: var(--color-text-on-dark) !important;
+}
+
+/* Leave day events */
+.fc-event.leave-event {
+  background-color: var(--color-accent) !important;
+  color: var(--color-text-on-dark) !important;
+}
+
+.fc-theme-standard td,
+.fc-theme-standard th {
+  border-color: rgba(107, 43, 6, 0.1) !important;
+}
+
+.fc-scrollgrid {
+  border: none !important;
+}
+
+/* ============================================
+   EMPTY STATES
+   ============================================ */
+.empty-state {
+  font-size: 13px;
+  color: var(--color-text-on-light);
+  opacity: 0.5;
+  font-style: italic;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 900px) {
+  main {
+    grid-template-columns: 1fr;
+    padding: var(--size-md);
+  }
+
+  .input-row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ============================================
+   MONTH FILTER PILLS
+   ============================================ */
+.month-filter {
+  width: 100%;
+}
+
+.month-pills {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: var(--size-xs);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.month-pills::-webkit-scrollbar {
+  display: none;
+}
+
+.month-pill {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 6px 10px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+  background: transparent;
+  color: var(--color-text-on-light);
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.month-pill:hover {
+  background-color: var(--color-surface);
+  border-color: var(--color-accent);
+}
+
+.month-pill.active {
+  background-color: var(--color-primary);
+  color: var(--color-text-on-dark);
+  border-color: var(--color-primary);
+}
+
+/* ============================================
+   OPPORTUNITY CARDS
+   ============================================ */
+.opportunity-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: var(--size-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-sm);
+  margin-bottom: var(--size-sm);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--size-xs);
+}
+
+.card-stars {
+  display: flex;
+  align-items: center;
+  gap: var(--size-sm);
+}
+
+.stars {
+  color: var(--color-accent);
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+.card-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+}
+
+.card-month {
+  font-family: var(--font-display);
+  font-size: 16px;
+  color: var(--color-primary);
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.card-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+}
+
+.card-key {
+  color: var(--color-text-on-light);
+  opacity: 0.6;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 0.05em;
+}
+
+.card-val {
+  color: var(--color-text-on-light);
+  font-weight: 500;
+  text-align: right;
+}
+
+.card-highlight {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.card-btn {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 8px var(--size-md);
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-primary);
+  cursor: pointer;
+  width: 100%;
+  margin-top: var(--size-xs);
+  transition: background-color 0.15s, border-color 0.15s;
+}
+
+.card-btn:hover {
+  background: var(--color-background);
+  border-color: var(--color-accent);
+}
